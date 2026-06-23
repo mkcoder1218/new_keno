@@ -1,0 +1,341 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@750;800;900&family=Oswald:wght@600;700;800&family=Fira+Sans+Condensed:wght@700;800;900&display=swap');
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Moire W01 ExtraBold";
+  src:
+    url("https://db.onlinewebfonts.com/t/4ff390cfa8749f97fd6244a155d4ef56.woff2") format("woff2"),
+    url("https://db.onlinewebfonts.com/t/4ff390cfa8749f97fd6244a155d4ef56.woff") format("woff"),
+    url("https://db.onlinewebfonts.com/t/4ff390cfa8749f97fd6244a155d4ef56.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Moire Bold";
+  src:
+    url("https://db.onlinewebfonts.com/t/d9301eeb058bdea5f40dc9ce331a82bc.woff2") format("woff2"),
+    url("https://db.onlinewebfonts.com/t/d9301eeb058bdea5f40dc9ce331a82bc.woff") format("woff"),
+    url("https://db.onlinewebfonts.com/t/d9301eeb058bdea5f40dc9ce331a82bc.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Moire Bold";
+  src:
+    url("https://db.onlinewebfonts.com/t/d9301eeb058bdea5f40dc9ce331a82bc.woff2") format("woff2"),
+    url("https://db.onlinewebfonts.com/t/d9301eeb058bdea5f40dc9ce331a82bc.woff") format("woff"),
+    url("https://db.onlinewebfonts.com/t/d9301eeb058bdea5f40dc9ce331a82bc.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", "Inter", sans-serif;
+  --font-display: "Oswald", "Fira Sans Condensed", sans-serif;
+}
+
+/* Reset baseline */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000000;
+  color: #ffffff;
+  overflow: hidden;
+  font-family: "Oswald", "Fira Sans Condensed", sans-serif;
+}
+
+/* 16:9 Broadcast frame styling */
+.broadcast-frame {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: #000000;
+}
+
+/* Left Grid Layout - Vibrant TV Broadcast Red */
+.left-broadcast-grid {
+  width: 58%;
+  background: radial-gradient(circle at 50% 40%, #e60000 0%, #b80000 65%, #8a0000 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.25rem 2rem;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Right Broadcast Layout - Dark Maroon/Brown CRT Glow Gradient from spec */
+.right-broadcast-panel {
+  width: 42%;
+  background:
+    radial-gradient(circle at 50% 8%, rgba(130, 20, 8, .75), transparent 42%),
+    linear-gradient(to bottom, #661307 0%, #260301 48%, #020000 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 42px 3rem 2rem;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Thick Stark Black Divider */
+.vertical-divider {
+  width: 10px;
+  background-color: #000000;
+  height: 100%;
+  box-shadow: 0 0 15px rgba(0,0,0,0.9);
+  z-index: 20;
+}
+
+/* ==========================================
+   Tactile Keno Cells Visual Engineering
+   ========================================== */
+
+/* Normal Cell: Highly polished red glossy base but flatter and more broadcast-looking as requested */
+.cell-keno-normal {
+  position: relative;
+  aspect-ratio: 1.22; /* Slightly wider and flatter rectangle cell */
+  border-radius: 9px;
+  background: linear-gradient(to bottom, rgba(255,70,70,.26) 0%, rgba(130,20,20,.30) 48%, rgba(35,0,0,.88) 49%, rgba(15,0,0,.94) 100%);
+  border: 1px solid rgba(100,0,0,.75);
+  box-shadow: 0 4px 5px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.10);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.1s ease;
+  overflow: hidden;
+}
+
+/* Normal cell number: bold, condensed Impact style. Fits perfectly without touching edges, slightly transparent */
+.cell-number-normal {
+  font-family: Impact, "Arial Black", sans-serif;
+  font-size: clamp(26px, 3.2vw, 38px);
+  font-weight: 800; /* reduced grid number font weight a little from 900 */
+  color: #ff0808;
+  opacity: .70; /* slightly transparent red */
+  line-height: 1;
+  transform: translateY(2px);
+  text-shadow: 0 2px 0 rgba(0,0,0,.55);
+}
+
+/* Selected/Highlighted Cell: pale yellow top to orange/gold bottom */
+.cell-keno-highlighted {
+  position: relative;
+  aspect-ratio: 1.22;
+  border-radius: 9px;
+  background: linear-gradient(to bottom, #fff86a 0%, #ffd91a 38%, #f7a900 58%, #b66b00 100%);
+  border: 2px solid #fff6ba;
+  box-shadow: 0 0 12px rgba(255,245,70,.9), 0 5px 7px rgba(0,0,0,.55), inset 0 2px 0 rgba(255,255,255,.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(1.02);
+  overflow: hidden;
+}
+
+/* Highlight cell number style: solid black, bold, centered properly, slightly smaller to look incredible */
+.cell-number-highlighted {
+  font-family: Impact, "Arial Black", sans-serif;
+  font-size: clamp(26px, 3.2vw, 38px);
+  font-weight: 900;
+  color: #050505;
+  opacity: 1;
+  line-height: 1;
+  transform: translateY(2px);
+  text-shadow: none;
+}
+
+/* ==========================================
+   Typography & Visual FX 
+   ========================================= */
+
+/* DRAW title typography matching specification with custom Moire font */
+.draw-title {
+  font-family: "Moire W01 ExtraBold", "Moire Bold", Impact, "Arial Black", sans-serif;
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+
+.draw-word {
+  color: #fff200;
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: initial;
+  text-shadow:
+    1px 1px 0 #b9b000,
+    2px 2px 0 #6c7100,
+    3px 3px 0 #202900,
+    4px 4px 0 #050700,
+    0 0 4px rgba(255, 242, 0, 0.35);
+  font-weight: 800;
+}
+
+.draw-id {
+  color: #ffffff;
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: initial;
+  text-shadow:
+    1px 1px 0 #b8b8b8,
+    2px 2px 0 #600900,
+    3px 3px 0 #250000,
+    4px 4px 0 #050000,
+    0 0 3px rgba(255, 255, 255, 0.25);
+  font-weight: 800;
+}
+
+.draw-title.left {
+  font-size: clamp(42px, 4.4vw, 64px);
+}
+
+.draw-title.right {
+  font-size: clamp(38px, 4vw, 58px);
+  justify-content: center;
+  margin-top: 0;
+  margin-bottom: 22px;
+}
+
+/* Embossed Gold 3D style from specifications */
+.timer {
+  font-family: "Arial Black", "Arial Narrow", Arial, sans-serif;
+  font-size: clamp(78px, 7.2vw, 104px);
+  font-weight: 900;
+  letter-spacing: 1px;
+  line-height: 0.9;
+  color: #ffd51a;
+  -webkit-text-stroke: 0;
+  transform: scaleX(1.04);
+  transform-origin: center;
+  text-shadow:
+    0 2px 0 #ffe36a,
+    0 4px 0 #b97800,
+    0 7px 0 #5b2b00,
+    4px 8px 8px rgba(0, 0, 0, 0.7),
+    0 0 8px rgba(255, 210, 0, 0.28);
+  margin: 0 0 28px;
+  display: inline-block;
+}
+
+.pick-text {
+  font-family: "Arial Black", Impact, sans-serif;
+  font-size: clamp(46px, 4.6vw, 66px);
+  color: #ff0707;
+  letter-spacing: 3px;
+  line-height: 1;
+  text-align: center;
+  margin-bottom: 24px;
+  display: inline-block;
+}
+
+.payout-table {
+  width: 72%;
+  margin: 0 auto;
+  font-family: Impact, "Arial Black", sans-serif;
+}
+
+.payout-header,
+.payout-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.payout-header {
+  font-family: "Moire Bold", "Moire W01 ExtraBold", Impact, "Arial Black", sans-serif;
+  font-weight: 700;
+  color: #fff200;
+  font-size: clamp(28px, 2.8vw, 38px);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+}
+
+.payout-row {
+  color: #fff;
+  font-size: clamp(28px, 2.8vw, 38px);
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.payout-row span:last-child,
+.payout-header span:last-child {
+  text-align: right;
+}
+
+/* Light Red Neon outline for KENO logo text matching reference */
+.keno-logo {
+  font-family: Impact, "Arial Black", sans-serif;
+  font-size: clamp(54px, 6vw, 86px);
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(255,180,180,.65);
+  text-shadow:
+    0 0 8px rgba(255,80,80,.75),
+    2px 2px 0 rgba(120,0,0,.7);
+  opacity: .85;
+}
+
+/* ==========================================
+   Instruction Mode Styling
+   ========================================== */
+.instruction-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  font-family: Impact, "Arial Black", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.0;
+  margin-top: 2rem;
+}
+
+.instruction-line {
+  font-size: clamp(50px, 5.6vw, 82px);
+  font-weight: 900;
+  text-shadow: 4px 4px 0 #000000;
+  white-space: nowrap;
+  margin-bottom: 0.25rem;
+}
+
+/* Perfect Golden/Orange Metallic button for TAILS */
+.tails-metallic-button {
+  background: linear-gradient(180deg, #ffdf60 0%, #eab308 48%, #ca8a04 50%, #854d0e 100%);
+  border: 3.5px solid #ffec8d;
+  border-radius: 9px;
+  box-shadow: 
+    inset 0 2px 3px rgba(255, 255, 255, 0.8),
+    0 4px 6px rgba(0, 0, 0, 0.6);
+  font-family: Impact, 'Oswald', sans-serif;
+  font-weight: 900;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  letter-spacing: 1px;
+  transition: all 0.1s ease;
+}
+
+.tails-metallic-button:hover:not(:disabled) {
+  background: linear-gradient(180deg, #fff280 0%, #facc15 48%, #d97706 50%, #92400e 100%);
+}
+
+.tails-metallic-button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+/* Hide all custom scrollbars */
+::-webkit-scrollbar {
+  display: none;
+}

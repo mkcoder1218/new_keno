@@ -1,0 +1,6 @@
+{
+  "name": "Red Keno",
+  "description": "A professional dark-red themed Keno betting terminal game featuring an animated draw machine, live betting countdowns, customizable paytables, interactive bet slips, and persistent local storage wallet.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
